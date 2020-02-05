@@ -1,0 +1,24 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
+cmake_minimum_required(VERSION 3.16.0)
+
+# Add this repository's cmake modules to CMAKE_MODULE_PATH
+list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_CURRENT_LIST_DIR}/cmake)
+
+project(Sandbox LANGUAGES C CXX VERSION 0.1)
+
+set(PROJ_DIR ${CMAKE_CURRENT_LIST_DIR})
+set(INCLUDE_DIR ${PROJ_DIR}/include)
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_C_STANDARD 99)
+
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
+
+set(TARGET_ARCH ${CMAKE_SYSTEM_PROCESSOR})
+
+add_subdirectory(src)
