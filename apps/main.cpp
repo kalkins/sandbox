@@ -30,22 +30,22 @@ int main()
     std::vector<uint16_t> data = {1, 2, 3, 4};
 
     while (true) {
-	std::cout << "Waiting for message" << std::endl;
-	c = pipe.read<char>();
+        std::cout << "Waiting for message" << std::endl;
+        c = pipe.read<char>();
 
-	if (c == 'r') {
-	    std::cout << "Sending response" << std::endl;
-	    pipe.write(data.size());
+        if (c == 'r') {
+            std::cout << "Sending response" << std::endl;
+            pipe.write(data.size());
 
-	    for (auto &d : data) {
-		d++;
-		pipe.write(d);
-	    }
+            for (auto &d : data) {
+            d++;
+            pipe.write(d);
+            }
 
-	    std::cout << "Message sent" << std::endl;
-	} else if (msg == "q") {
-	    break;
-	}
+            std::cout << "Message sent" << std::endl;
+        } else if (msg == "q") {
+            break;
+        }
     }
 
     k4a_close(device);
