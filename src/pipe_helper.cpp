@@ -1,7 +1,7 @@
 #include <iostream>
 #include "pipe_helper.hpp"
 
-#ifdef __unix_
+#ifdef __unix__
 #include <fstream>
 #include <sys/types.h>
 #include <sys/stat.h>
