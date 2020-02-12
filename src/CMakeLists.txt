@@ -3,13 +3,11 @@
 
 find_package(k4a REQUIRED)
 
-include_directories(
-    .
-)
+include_directories(.)
 
 add_executable(sandbox
-    main.cpp
-    )
+  main.cpp
+  k4a_helper.cpp
+  )
 
-target_link_libraries(sandbox PRIVATE
-    k4a::k4a)
+target_link_libraries(sandbox PRIVATE k4a::k4a)
