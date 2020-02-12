@@ -1,13 +1,9 @@
-# Copyright (c) Microsoft Corporation. All rights reserved.
-# Licensed under the MIT License.
-
 find_package(k4a REQUIRED)
 
-include_directories(.)
-
-add_executable(sandbox
-  main.cpp
+add_library(sandbox_lib
   k4a_helper.cpp
+  pipe_helper.cpp
   )
 
-target_link_libraries(sandbox PRIVATE k4a::k4a)
+target_include_directories(sandbox_lib PUBLIC ../include/)
+target_link_libraries(sandbox_lib PUBLIC k4a::k4a)

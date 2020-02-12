@@ -1,6 +1,3 @@
-# Copyright (c) Microsoft Corporation. All rights reserved.
-# Licensed under the MIT License.
-
 cmake_minimum_required(VERSION 3.16.0)
 
 # Add this repository's cmake modules to CMAKE_MODULE_PATH
@@ -22,3 +19,4 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 set(TARGET_ARCH ${CMAKE_SYSTEM_PROCESSOR})
 
 add_subdirectory(src)
+add_subdirectory(apps)
