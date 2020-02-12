@@ -7,43 +7,31 @@
 #include <fstream>
 #else
 #include <windows.h>
+#include <tchar.h>
+#include <strsafe.h>
 #endif
 
 namespace sandbox {
     class Pipe {
-    public:
-	Pipe(std::string name);
+	public:
+		const int BUFSIZE = 1;
 
-	template<typename T>
-	T read() {
-	    #ifdef __unix__
-	    stream.open(path, std::ios::in);
-	    char data;
-	    stream >> data;
-	    stream.close();
-	    return data;
-	    #else
+		Pipe(std::string name);
+		~Pipe();
+		
+		char read();
+		void write(char data);
+		void write(std::string data);
 
-	    #endif
-	}
-
-	template<typename T>
-	void write(T data) {
-	    #ifdef __unix__
-	    stream.open(path, std::ios::out);
-	    stream << data << std::endl;
-	    stream.close();
-	    #else
-
-	    #endif
-	}
     private:
-	std::string path;
-	#ifdef __unix__
-	std::fstream stream;
-	#else
-
-	#endif
+		std::string path;
+#ifdef __unix__
+		std::fstream stream;
+#else
+		HANDLE pipe = INVALID_HANDLE_VALUE;
+		DWORD bytesRead = 0;
+		DWORD bytesWritten = 0;
+#endif
     };
 }
 

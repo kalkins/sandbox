@@ -20,7 +20,7 @@ int main()
     k4a_device_t device;
 
     if (k4a_open_start(device, config)) {
-	//return -1;
+    	//return -1;
     }
 
     Pipe pipe("sandbox_pipe");
@@ -31,15 +31,15 @@ int main()
 
     while (true) {
         std::cout << "Waiting for message" << std::endl;
-        c = pipe.read<char>();
+        c = pipe.read();
 
         if (c == 'r') {
             std::cout << "Sending response" << std::endl;
-            pipe.write(data.size());
+            pipe.write(std::to_string(data.size()));
 
             for (auto &d : data) {
-            d++;
-            pipe.write(d);
+                d++;
+                pipe.write(std::to_string(d));
             }
 
             std::cout << "Message sent" << std::endl;
