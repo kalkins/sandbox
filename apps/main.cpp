@@ -30,7 +30,6 @@ int main()
     std::vector<uint16_t> data = {1, 2, 3, 4};
 
     while (true) {
-	std::cout << "Opening pipe" << std::endl;
 	std::cout << "Waiting for message" << std::endl;
 	c = pipe.read<char>();
 
@@ -38,7 +37,7 @@ int main()
 	    std::cout << "Sending response" << std::endl;
 	    pipe.write(data.size());
 
-	    for (auto d : data) {
+	    for (auto &d : data) {
 		d++;
 		pipe.write(d);
 	    }
